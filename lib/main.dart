@@ -1,0 +1,21 @@
+import 'package:evently/home_screen.dart';
+import 'package:flutter/material.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized;
+  return runApp(Evently());
+}
+
+class Evently extends StatelessWidget {
+  const Evently({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      routes: {
+        HomeScreen.routeName: (_) => HomeScreen(),
+      },
+      initialRoute: HomeScreen.routeName,
+    );
+  }
+}
