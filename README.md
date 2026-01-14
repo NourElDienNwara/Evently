@@ -1,4 +1,4 @@
-# evently
+# Evently
 
 A new Flutter project.
 
