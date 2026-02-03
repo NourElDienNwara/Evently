@@ -25,10 +25,16 @@ class DefaultTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         prefixIcon: prefixIcon != null
-            ? SvgPicture.asset('assets/icons/$prefixIcon.svg')
+            ? Padding(
+              padding: const EdgeInsets.all(16),
+              child: SvgPicture.asset('assets/icons/$prefixIcon.svg'),
+            )
             : null,
         suffixIcon: suffixIcon != null
-            ? SvgPicture.asset('assets/icons/$suffixIcon.svg')
+            ? Padding(
+              padding: const EdgeInsets.all(16),
+              child: SvgPicture.asset('assets/icons/$suffixIcon.svg'),
+            )
             : null,
       ),
 
