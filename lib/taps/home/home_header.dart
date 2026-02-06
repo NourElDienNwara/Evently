@@ -11,7 +11,6 @@ class HomeHeader extends StatefulWidget {
 }
 
 class _HomeHeaderState extends State<HomeHeader> {
-
   int currentIndex = 0;
 
   @override
@@ -39,6 +38,8 @@ class _HomeHeaderState extends State<HomeHeader> {
                   if (index == currentIndex) return;
                   setState(() {
                     currentIndex = index;
+                    CategoryModel selectedCategory =
+                        CategoryModel.categories[index - 1];
                   });
                 },
                 tabs: [
@@ -51,7 +52,9 @@ class _HomeHeaderState extends State<HomeHeader> {
                     (categoryModel) => TapItem(
                       label: categoryModel.name,
                       icon: categoryModel.icon,
-                      isSelected: currentIndex == CategoryModel.categories.indexOf(categoryModel) + 1,
+                      isSelected:
+                          currentIndex ==
+                          CategoryModel.categories.indexOf(categoryModel) + 1,
                     ),
                   ),
                 ],
