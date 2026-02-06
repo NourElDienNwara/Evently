@@ -1,5 +1,7 @@
 import 'package:evently/models/category_model.dart';
+import 'package:evently/models/event_model.dart';
 import 'package:evently/models/user_model.dart';
+import 'package:evently/providers/events_provider.dart';
 import 'package:evently/providers/user_provider.dart';
 import 'package:evently/taps/home/tap_item.dart';
 import 'package:flutter/foundation.dart';
@@ -19,6 +21,7 @@ class _HomeHeaderState extends State<HomeHeader> {
   @override
   Widget build(BuildContext context) {
     UserModel currentUser = Provider.of<UserProvider>(context).currentUser!;
+    EventsProvider eventsProvider = Provider.of<EventsProvider>(context, listen: false);
 
     return Padding(
       padding: const EdgeInsets.only(left: 16),
@@ -46,8 +49,10 @@ class _HomeHeaderState extends State<HomeHeader> {
                   if (index == currentIndex) return;
                   setState(() {
                     currentIndex = index;
-                    CategoryModel selectedCategory =
+                    CategoryModel? selectedCategory = index == 0 ? null :
                         CategoryModel.categories[index - 1];
+
+                    eventsProvider.filterEvents(selectedCategory);
                   });
                 },
                 tabs: [
