@@ -18,4 +18,11 @@ class FirebaseServes {
     event.id = doc.id;
     return doc.set(event);
   }
+
+  static Future<List<EventModel>> getEvent() async {
+    CollectionReference<EventModel> eventsCollection = getEventsCollection();
+
+    QuerySnapshot<EventModel> querySnapshot = await eventsCollection.get();
+    return querySnapshot.docs.map((docSnapshot) => docSnapshot.data()).toList();
+  }
 }
