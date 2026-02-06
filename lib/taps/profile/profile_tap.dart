@@ -1,13 +1,19 @@
 import 'package:evently/app_theme.dart';
 import 'package:evently/models/language_option_mogel.dart';
+import 'package:evently/models/user_model.dart';
+import 'package:evently/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class ProfileTap extends StatelessWidget {
   const ProfileTap({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    UserModel currentUser = Provider.of<UserProvider>(context).currentUser!;
+    
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -20,7 +26,7 @@ class ProfileTap extends StatelessWidget {
           SizedBox(height: 16),
 
           Text(
-            'User Name',
+            currentUser.userName,
             style: Theme.of(
               context,
             ).textTheme.titleLarge!.copyWith(fontWeight: .w600),
@@ -29,7 +35,7 @@ class ProfileTap extends StatelessWidget {
           SizedBox(height: 4),
 
           Text(
-            'username@gmail.com',
+            currentUser.email,
             style: Theme.of(context).textTheme.titleSmall,
           ),
 
