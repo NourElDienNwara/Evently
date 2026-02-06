@@ -1,4 +1,7 @@
 import 'package:evently/app_theme.dart';
+import 'package:evently/auth/login_screen.dart';
+import 'package:evently/auth/register_screen.dart';
+import 'package:evently/firebase_serves.dart';
 import 'package:evently/models/language_option_mogel.dart';
 import 'package:evently/models/user_model.dart';
 import 'package:evently/providers/user_provider.dart';
@@ -11,9 +14,8 @@ class ProfileTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     UserModel currentUser = Provider.of<UserProvider>(context).currentUser!;
-    
+
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -63,12 +65,16 @@ class ProfileTap extends StatelessWidget {
                   builder: (context) => AlertDialog(
                     title: Text("اختار اللغة"),
                     content: Text("من فضلك اختر لغة التطبيق"),
-                    actions: LanguageOptionMogel.options.map((language) => TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(language.name),
-                    )).toList(),
+                    actions: LanguageOptionMogel.options
+                        .map(
+                          (language) => TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(language.name),
+                          ),
+                        )
+                        .toList(),
                   ),
                 );
               },
@@ -86,6 +92,9 @@ class ProfileTap extends StatelessWidget {
 
           ListTile(
             title: Text('Log Out'),
+            onTap: () {
+              FirebaseServes.logout().then((_) => Navigator.of(context).pushReplacementNamed(LoginScreen.routeName).then((_) => Provider.of<UserProvider>(context).updateCurrentUser(null)));
+            },
             trailing: SvgPicture.asset(
               'assets/icons/logout.svg',
               width: 24,
@@ -98,5 +107,3 @@ class ProfileTap extends StatelessWidget {
     );
   }
 }
-
-
