@@ -25,11 +25,21 @@ class Dark {
 class AppTheme {
   static Light light = Light();
   static Dark dark = Dark();
-  
+
   static ThemeData lightTheme = ThemeData(
     primaryColor: light.mainColor,
 
     scaffoldBackgroundColor: light.background,
+
+    appBarTheme: AppBarTheme(
+      backgroundColor: light.background,
+      centerTitle: true,
+      titleTextStyle: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        color: light.mainText,
+      ),
+    ),
 
     inputDecorationTheme: InputDecorationThemeData(
       filled: true,
@@ -49,6 +59,28 @@ class AppTheme {
         borderSide: BorderSide(color: light.stoke),
         borderRadius: BorderRadius.circular(16),
       ),
+
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: light.red),
+        borderRadius: BorderRadius.circular(16),
+      ),
+
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: light.red),
+        borderRadius: BorderRadius.circular(16),
+      ),
+    ),
+
+    listTileTheme: ListTileThemeData(
+      tileColor: light.inputs,
+      minTileHeight: 0,
+      contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16),), 
+      titleTextStyle: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: light.mainText,
+      ),
     ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -63,7 +95,37 @@ class AppTheme {
       shape: CircleBorder(),
     ),
 
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: light.mainColor,
+        foregroundColor: light.inputs,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        textStyle: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    ),
+
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: light.mainColor,
+        textStyle: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          decoration: .underline
+        ),
+      ),
+    ),
+
     textTheme: TextTheme(
+      headlineSmall: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+        color: light.mainColor,
+      ),
       titleLarge: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w500,
@@ -100,6 +162,11 @@ class AppTheme {
     ),
 
     textTheme: TextTheme(
+      headlineSmall: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+        color: dark.mainColor,
+      ),
       titleLarge: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w500,
